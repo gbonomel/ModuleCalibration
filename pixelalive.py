@@ -144,24 +144,12 @@ if dual == True:
     figsize_max = 6
     pixelaliveMap = dualMap(conf, pixelalive)
     ToTMap        = dualMap(conf, tot2d)
-    col_labels = ["0","100","200","300","432","100","200","300","432"]
-    row_labels = ["0","100","200","336"]
-    col_x = np.array([0,100,200,300,432,532,632,732,864])
-    row_y = np.array([0,100,200,336])
 
 else:
     figsize_min = 13
     figsize_max = 10
     pixelaliveMap = quadMap(conf, pixelalive)
     ToTMap        = quadMap(conf, tot2d)
-    col_labels = ["0","100","200","300","432","100","200","300","432"]
-    row_labels = ["0","100","200","336","100","200","336"]
-    col_x = np.array([0,100,200,300,432,532,632,732,864])
-    row_y = np.array([0,100,200,336,436,536,672])
-    roc23_labels = ["ROC2","ROC3"]
-
-rocs  = np.array([216,648])
-roc01_labels = ["ROC1","ROC0"]
 
 '''
 PIXEL ALIVE MAP 
@@ -171,24 +159,12 @@ plt.style.use([hep.cms.style.ROOT])
 f1,ax1 = plt.subplots(figsize=(figsize_min,figsize_max))
 f1.tight_layout(pad=3)
 a1 = ax1.pcolor(pixelaliveMap, cmap=plt.cm.viridis, vmin=0, vmax=1)
-ax1.axvline(x=432, color='black', linestyle='--', linewidth=2)
 cbar = f1.colorbar(a1, ax=ax1)
 cbar.set_label('efficiency', labelpad=20)
 ax1.set_ylabel('row')
 ax1.set_xlabel('column')
-ax1.set_xticks(ticks=col_x, labels=col_labels)
-ax1.set_yticks(ticks=row_y, labels=row_labels)
-ax1.tick_params(axis='x', labelsize = 16)
-ax1.tick_params(axis='y', labelsize = 16)
-secax = ax1.secondary_xaxis(0)
-secax.set_xticks(ticks=rocs, labels=roc01_labels)
-secax.tick_params(axis='x', pad=35)
-if dual == False:
-    ax1.axvline(y=336, color='black', linestyle='--', linewidth=2)
-    thirdax = ax1.secondary_xaxis(1)
-    thirdax.set_xticks(ticks=rocs, labels=roc23_labels)
 ax1.set_title('Pixel Alive Map', y=1.02)
-f1.savefig(outfolder + 'PixelAlive_withLine' + module, dpi=300)
+f1.savefig(outfolder + 'PixelAlive' + module, dpi=300)
 plt.show()
 
 '''

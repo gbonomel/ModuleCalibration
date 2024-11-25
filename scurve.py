@@ -145,24 +145,12 @@ if dual == True:
     figsize_max = 6
     thrMap   = dualMap(conf, thr2d)
     noiseMap = dualMap(conf, noise2d)
-    col_labels = ["0","100","200","300","432","100","200","300","432"]
-    row_labels = ["0","100","200","336"]
-    col_x = np.array([0,100,200,300,432,532,632,732,864])
-    row_y = np.array([0,100,200,336])
 
 else:
     figsize_min = 13
     figsize_max = 10
     thrMap   = quadMap(conf, thr2d)
     noiseMap = quadMap(conf, noise2d)
-    col_labels = ["0","100","200","300","432","100","200","300","432"]
-    row_labels = ["0","100","200","336","100","200","336"]
-    col_x = np.array([0,100,200,300,432,532,632,732,864])
-    row_y = np.array([0,100,200,336,436,536,672])
-    roc23_labels = ["ROC2","ROC3"]
-
-rocs  = np.array([216,648])
-roc01_labels = ["ROC1","ROC0"]
 
 '''
 THRESHOLD MAP 
@@ -172,22 +160,10 @@ plt.style.use([hep.cms.style.ROOT])
 f0,ax0 = plt.subplots(figsize=(figsize_min,figsize_max))
 f0.tight_layout(pad=3)
 a0 = ax0.pcolor(thrMap, cmap=plt.cm.viridis, vmin=0, vmax=500)
-ax0.axvline(x=432, color='black', linestyle='--', linewidth=2)
 cbar = f0.colorbar(a0, ax=ax0)
 cbar.set_label('$\Delta$VCAL[VCAL]', labelpad=20)
 ax0.set_ylabel('row')
 ax0.set_xlabel('column')
-ax0.set_xticks(ticks=col_x, labels=col_labels)
-ax0.set_yticks(ticks=row_y, labels=row_labels)
-ax0.tick_params(axis='x', labelsize = 16)
-ax0.tick_params(axis='y', labelsize = 16)
-secax = ax0.secondary_xaxis(0)
-secax.set_xticks(ticks=rocs, labels=roc01_labels)
-secax.tick_params(axis='x', pad=30)
-if dual == False:
-    ax0.axvline(y=336, color='black', linestyle='--', linewidth=2)
-    thirdax = ax0.secondary_xaxis(1)
-    thirdax.set_xticks(ticks=rocs, labels=roc23_labels)
 ax0.set_title('2D Threshold Map', y=1.02)
 f0.savefig(outfolder + '2DThreshold_' + module, dpi=300)
 plt.show()
@@ -200,22 +176,10 @@ NOISE MAP
 f1,ax1 = plt.subplots(figsize=(figsize_min,figsize_max))
 f1.tight_layout(pad=3)
 a1 = ax1.pcolor(noiseMap, cmap=plt.cm.viridis, vmin=0, vmax=50)
-ax1.axvline(x=432, color='black', linestyle='--', linewidth=2)
 cbar = f1.colorbar(a1, ax=ax1)
 cbar.set_label('$\Delta$ENC', labelpad=20)
 ax1.set_ylabel('row')
 ax1.set_xlabel('column')
-ax1.set_xticks(ticks=col_x, labels=col_labels)
-ax1.set_yticks(ticks=row_y, labels=row_labels)
-ax1.tick_params(axis='x', labelsize = 16)
-ax1.tick_params(axis='y', labelsize = 16)
-secax = ax1.secondary_xaxis(0)
-secax.set_xticks(ticks=rocs, labels=roc01_labels)
-secax.tick_params(axis='x', pad=30)
-if dual == False:
-    ax1.axvline(y=336, color='black', linestyle='--', linewidth=2)
-    thirdax = ax1.secondary_xaxis(1)
-    thirdax.set_xticks(ticks=rocs, labels=roc23_labels)
 ax1.set_title('2D Noise Map', y=1.02)
 f1.savefig(outfolder + '2DNoise_' + module, dpi=300)
 plt.show()
