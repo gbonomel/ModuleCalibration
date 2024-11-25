@@ -1,0 +1,29 @@
+ph2acf:
+  chip_id: [0,1]
+  hybrid: 1
+  is_dual: False
+
+input:
+  input_folder: /home/giorgia/module_calibration/
+  input_file: scurve.root
+  
+output:
+  output_folder: /home/giorgia/module_calibration/plots/
+  module_name: 1x2CH10
+
+scans:
+  pixelalive: PixelAlive_Chip
+  tot2d: ToT2D_Chip
+  threshold1d: Threshold1D_Chip
+  threshold2d: Threshold2D_Chip
+  noise1d: Noise1D_Chip
+  noise2d: Noise2D_Chip
+  masked2d: Masked2D_Chip
+  
+param:
+  nbins_noise: 100
+  nbins_thr: 100
+  minVcal_noise: 0
+  maxVcal_noise: 60
+  minVcal_thr: 0
+  maxVcal_thr: 500
